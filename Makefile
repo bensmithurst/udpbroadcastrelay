@@ -10,5 +10,4 @@ all:
 	$(CC) $(CFLAGS) -g main.c -o udpbroadcastrelay
 
 install:
-	cp udpbroadcastrelay /usr/local/sbin/
-	chmod 755 /usr/local/sbin/udpbroadcastrelay
+	install -cm 555 udpbroadcastrelay /usr/local/sbin/
