@@ -1191,6 +1191,7 @@ void handle_locsvc_proxy_recv (int proxyidx, int socktype)
                     memmove(addrEndPtr+lengthChange, addrEndPtr, buffer + numread + 1 - addrEndPtr);
                     memcpy(addrStartPtr, addrstr, strlen(addrstr));
                 }
+                numread += lengthChange;
             } else {
                 DPRINT("Could not find a free REST services proxy slot - sending unmodified response\n\n");
             }
@@ -1353,6 +1354,7 @@ void handle_msearch_proxy_recv (int proxyidx)
             if ((len+lengthChange) < (sizeof(gram)-HEADER_LEN)) {
                 memmove(addrEndPtr+lengthChange, addrEndPtr, (char*)gram + HEADER_LEN + len + 1 - addrEndPtr);
                 memcpy(addrStartPtr, addrstr, strlen(addrstr));
+                len += lengthChange;
             }
         } else {
             DPRINT("Could not find a free Locator services proxy slot - sending unmodified response\n\n");
@@ -2496,3 +2498,5 @@ srandom(time(NULL) ^ getpid());
         DPRINT ("\n");
     }
 };
+
+/* vim:set ts=4 sw=4 et: */
