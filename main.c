@@ -150,6 +150,7 @@ struct MSEARCHFilter {
 static struct MSEARCHFilter msearch_filters[MAX_MSEARCH_FILTERS];
 static int num_msearch_filters= 0;
 static int default_msearch_action= MSEARCH_ACTION_FORWARD;
+static int proxyDialHttpHostHeader = 0;
 
 /* list of SSDP M-SEARCH reply listener proxies */
 struct MSEARCHProxy {
