@@ -11,6 +11,6 @@ clean:
 	rm -f udpbroadcastrelay
 
 install:
-	install -Dpm0755 -t $(DESTDIR)$(PREFIX)/sbin/ udpbroadcastrelay
+	install -pm0755 udpbroadcastrelay $(DESTDIR)$(PREFIX)/sbin/
 
 .PHONY: all clean install
