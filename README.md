@@ -29,7 +29,7 @@ USAGE
     [--blockid id...] \
     [--blockcidr network-prefix/size] \
     [--allowcidr network-prefix/size] \
-    [--msearch action[,search-term]] \   
+    [--msearch action[,search-term]] \
     [--multicast 224.0.0.251] \
     [-s <spoof_source_ip>]
     [-t|--ttl-id] [-d] [-f]
@@ -65,12 +65,12 @@ USAGE
   `--multicast <group address>`.
 - The source address for all packets can be modified with `-s <ip>`. This
   is unusual.
-- A special source ip of `-s 1.1.1.1` can be used to change the source ip 
-  of the relayed packets to match the ip address of the relay server's 
+- A special source ip of `-s 1.1.1.1` can be used to change the source ip
+  of the relayed packets to match the ip address of the relay server's
   destination interface. Additionally, the source UDP port for the server's
-  destination interface is set to the same destination port found in the 
-  original packet. 
-  `-s 1.1.1.2` does the same but leaves the UDP ports unchanged. These 
+  destination interface is set to the same destination port found in the
+  original packet.
+  `-s 1.1.1.2` does the same but leaves the UDP ports unchanged. These
   values are notably required to cater for the Chromecast system.
 - Special SSDP processing can be turned on using the `--msearch` option.
   By default SSDP M-SEARCH packets are treated the same as any other
@@ -78,25 +78,25 @@ USAGE
   - `block`:  drop the M-SEARCH packet.
   - `fwd`:    forward the M-SEARCH packet like a regular packet (and the
   `-s` into account).
-  - `proxy`:  create a local proxy for M-SEARCH requests. Set the M-SEARCH 
-    UDP source to the IP of the relay's destination network interface 
-    before relaying. Addtionally, the UDP source port is updated to a port 
-    that is tracked by the proxy for relaying responses back to the 
+  - `proxy`:  create a local proxy for M-SEARCH requests. Set the M-SEARCH
+    UDP source to the IP of the relay's destination network interface
+    before relaying. Addtionally, the UDP source port is updated to a port
+    that is tracked by the proxy for relaying responses back to the
     correct requesting host.
-    Received responses are sent back to original requester with no 
-    processing. i.e. the requester will receive an SSDP reponse with a 
+    Received responses are sent back to original requester with no
+    processing. i.e. the requester will receive an SSDP reponse with a
     LOCATION referencing a host on the other network.
   - `dial`:   perform full DIAL protocol processing on M-SEARCH request.
-  Create proxies for M-SEARCH (same as `proxy`), Locator and REST services. 
-  Use this for Youtube app on Smart TVs. 
-  
+  Create proxies for M-SEARCH (same as `proxy`), Locator and REST services.
+  Use this for Youtube app on Smart TVs.
+
   When a `search-term` is also specified the given action will only apply
   to M-SEARCH packets containing this specific search term. `--msearch`
   can be specified multiple times to add more search terms. The value of `-s`
   affects normal and M-SEARCH packets with the forward action.
-  
+
   The old `-s 1.1.1.3` option should be replaced with `--msearch dial`.
-  
+
 - The original version of this tool marked the TTL of outgoing relayed
   packets to detect echos and preserved DSCP. This original behavior can
   be restored by setting the [-t|--ttl-id] parameter.
@@ -117,7 +117,7 @@ EXAMPLE
 `./udpbroadcastrelay --id 1 --port 5353 --dev eth0 --dev eth1 --multicast 224.0.0.251 -s 1.1.1.1 --allowcidr 192.168.1.0/24 --allowcidr 192.168.20.0/24 --blockcidr 192.168.20.20/32`
 
 This will prevent relaying broadcast/multicast packets from host 192.168.20.20. It will not stop any unicast traffic from this host.
- 
+
 #### SSDP (Roku Discovery, DLNA Media, Sonos, UPnP + More)
 `./udpbroadcastrelay --id 1 --port 1900 --dev eth0 --dev eth1 --multicast 239.255.255.250`
 
