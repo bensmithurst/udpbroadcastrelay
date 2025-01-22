@@ -173,6 +173,8 @@ these response packets to make it back to the original sender.
 Recent changes
 --------------
 
+- Fixed a bug where the wrong number of bytes were sent when rewriting IP address/ports
+  within SSDP messages.
 - Added --blockcidr and --allowcidr options
 - Print interface names instead of numbers in packet information messages
 - Removed the `-s 1.1.1.3` option and replaced it with a more general `--msearch`
